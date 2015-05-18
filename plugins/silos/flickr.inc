@@ -4,7 +4,7 @@
  * Silo implementation as ctools plugin.
  *
  * Create a Flickr App
- * @see https://developers.facebook.com/apps/
+ * @see https://www.flickr.com/services/apps/create/
  */
 
 // Ctools plugin definition.
@@ -19,8 +19,6 @@ $plugin = array(
 class FlickrSilo extends Silo {
 
   protected $title = 'Flickr';
-
-  protected $scopes = array();
 
   public function connect() {
     parent::connect();
@@ -43,7 +41,7 @@ class FlickrSilo extends Silo {
         // Extra request needed for oauth1 to request a request token
         $this->token = $this->service->requestRequestToken();
         $url = $this->service->getAuthorizationUri(
-          array('oauth_token' => $this->token->getRequestToken())
+          array('oauth_token' => $this->token->getRequestToken(), 'perms' => 'write')
         );
         header('Location: ' . $url);
       }
