@@ -3,22 +3,22 @@
  * @file
  * Silo implementation as ctools plugin.
  *
- * Create a Soundcloud App
+ * Create a SoundCloud App
  * @see http://soundcloud.com/you/apps
  */
 
 // Ctools plugin definition.
 $plugin = array(
-  'title' => 'Soundcloud',
-  'class' => 'SoundcloudSilo',
+  'title' => 'SoundCloud',
+  'class' => 'SoundCloudSilo',
 );
 
 /**
- * Class SoundcloudSilo.
+ * Class SoundCloudSilo.
  */
-class SoundcloudSilo extends Silo {
+class SoundCloudSilo extends Silo {
 
-  protected $title = 'Soundcloud';
+  protected $title = 'SoundCloud';
 
   protected $scopes = array();
 
