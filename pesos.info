@@ -8,5 +8,6 @@ files[] = silo.inc
 files[] = plugins/silos/facebook.inc
 files[] = plugins/silos/flickr.inc
 files[] = plugins/silos/github.inc
+files[] = plugins/silos/google.inc
 files[] = plugins/silos/instagram.inc
 files[] = plugins/silos/twitter.inc
