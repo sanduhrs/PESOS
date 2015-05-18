@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * PESOS - Publish Elsewhere, Syndicate (to your) Own Site
+ */
+
+/**
+ * Implements hook_uninstall.
+ */
+function pesos_uninstall() {
+  variable_del('pesos_service_credentials');
+}
