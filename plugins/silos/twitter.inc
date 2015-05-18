@@ -2,6 +2,9 @@
 /**
  * @file
  * Silo implementation as ctools plugin.
+ *
+ * Create a Twitter App
+ * @see https://apps.twitter.com/
  */
 
 // Ctools plugin definition.

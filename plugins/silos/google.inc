@@ -3,8 +3,8 @@
  * @file
  * Silo implementation as ctools plugin.
  *
- * Acquiring and using an API key
- * @see https://developers.google.com/+/api/oauth#apikey
+ * Create a Google App
+ * @see https://console.developers.google.com/project
  */
 
 // Ctools plugin definition.

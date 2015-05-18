@@ -2,6 +2,9 @@
 /**
  * @file
  * Silo implementation as ctools plugin.
+ *
+ * Create a GitHub App
+ * @see https://github.com/settings/developers
  */
 
 // Ctools plugin definition.

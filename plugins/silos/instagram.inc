@@ -2,6 +2,9 @@
 /**
  * @file
  * Silo implementation as ctools plugin.
+ *
+ * Create a Instagram App
+ * @see https://console.developers.google.com/project
  */
 
 // Ctools plugin definition.

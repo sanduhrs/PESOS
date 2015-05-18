@@ -2,6 +2,9 @@
 /**
  * @file
  * Silo implementation as ctools plugin.
+ *
+ * Create a Facebook App
+ * @see https://developers.facebook.com/apps/
  */
 
 // Ctools plugin definition.
