@@ -22,8 +22,8 @@ class LinkedinSilo extends Silo {
 
   protected $scopes = array('r_basicprofile');
 
-  public function connect() {
-    parent::connect();
+  public function authenticate() {
+    parent::authenticate();
 
     try {
       $this->token = $this->storage->retrieveAccessToken($this->title);

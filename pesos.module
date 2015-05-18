@@ -160,7 +160,7 @@ function pesos_connect($silo) {
   $class = $silo['class'];
   $silo = new $class($silo['defaults']);
   $silo->setURI(url(current_path(), array('absolute' => TRUE)));
-  $silo->connect();
+  $silo->authenticate();
 
   return '<pre>' . print_r($silo, TRUE) . '</pre>';
 }

@@ -169,9 +169,9 @@ class Silo {
   }
 
   /**
-   * Initialize the connection.
+   * Initialize the authentication.
    */
-  public function connect() {
+  public function authenticate() {
     /** @var $serviceFactory \OAuth\ServiceFactory An OAuth service factory. */
     $serviceFactory = new \OAuth\ServiceFactory();
 

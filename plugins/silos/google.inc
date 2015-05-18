@@ -22,8 +22,8 @@ class GoogleSilo extends Silo {
 
   protected $scopes = array('userinfo_email', 'userinfo_profile');
 
-  public function connect() {
-    parent::connect();
+  public function authenticate() {
+    parent::authenticate();
 
     try {
       $this->token = $this->storage->retrieveAccessToken($this->title);

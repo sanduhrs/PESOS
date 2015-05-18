@@ -22,8 +22,8 @@ class GithubSilo extends Silo {
 
   protected $scopes = array('user', 'repo');
 
-  public function connect() {
-    parent::connect();
+  public function authenticate() {
+    parent::authenticate();
 
     try {
       $this->token = $this->storage->retrieveAccessToken($this->title);

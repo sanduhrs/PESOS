@@ -22,8 +22,8 @@ class AmazonSilo extends Silo {
 
   protected $scopes = array('profile');
 
-  public function connect() {
-    parent::connect();
+  public function authenticate() {
+    parent::authenticate();
 
     try {
       $this->token = $this->storage->retrieveAccessToken($this->title);

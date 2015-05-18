@@ -22,8 +22,8 @@ class InstagramSilo extends Silo {
 
   protected $scopes = array('basic', 'comments', 'relationships', 'likes');
 
-  public function connect() {
-    parent::connect();
+  public function authenticate() {
+    parent::authenticate();
 
     try {
       $this->token = $this->storage->retrieveAccessToken($this->title);

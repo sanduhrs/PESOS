@@ -20,8 +20,8 @@ class FlickrSilo extends Silo {
 
   protected $title = 'Flickr';
 
-  public function connect() {
-    parent::connect();
+  public function authenticate() {
+    parent::authenticate();
 
     try {
       $this->token = $this->storage->retrieveAccessToken($this->title);
