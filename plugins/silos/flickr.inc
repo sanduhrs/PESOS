@@ -32,7 +32,7 @@ class FlickrSilo extends Silo {
       if (!empty($_GET['oauth_token'])) {
         $this->token = $this->storage->retrieveAccessToken($this->title);
 
-        // This was a callback request from Twitter, get the token.
+        // This was a callback request from remote, get the token.
         $this->service->requestAccessToken(
           $_GET['oauth_token'],
           $_GET['oauth_verifier'],

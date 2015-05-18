@@ -30,7 +30,7 @@ class GoogleSilo extends Silo {
     }
     catch (Exception $e) {
       if (!empty($_GET['code'])) {
-        // This was a callback request from GitHub, get the token.
+        // This was a callback request from remote, get the token.
         $this->service->requestAccessToken($_GET['code']);
       }
       else {
