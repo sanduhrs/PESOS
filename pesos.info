@@ -13,4 +13,5 @@ files[] = plugins/silos/foursquare.inc
 files[] = plugins/silos/github.inc
 files[] = plugins/silos/google.inc
 files[] = plugins/silos/instagram.inc
+files[] = plugins/silos/linkedin.inc
 files[] = plugins/silos/twitter.inc
