@@ -9,6 +9,7 @@ files[] = plugins/silos/amazon.inc
 files[] = plugins/silos/dropbox.inc
 files[] = plugins/silos/facebook.inc
 files[] = plugins/silos/flickr.inc
+files[] = plugins/silos/foursquare.inc
 files[] = plugins/silos/github.inc
 files[] = plugins/silos/google.inc
 files[] = plugins/silos/instagram.inc
