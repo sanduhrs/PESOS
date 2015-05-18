@@ -5,7 +5,6 @@
  * Base class for silos.
  */
 
-use OAuth\OAuth2\Service\GitHub;
 use OAuth\Common\Storage\Session;
 use OAuth\Common\Consumer\Credentials;
 
