@@ -1,0 +1,166 @@
+<?php
+
+/**
+ * @file
+ * PESOS - Publish Elsewhere, Syndicate (to your) Own Site
+ */
+
+include __DIR__ . '/vendor/autoload.php';
+
+/**
+ * Implements hook_init.
+ */
+function pesos_init() {
+  $silos = pesos_get_silos();
+  dsm($silos);
+}
+
+/**
+ * Implements hook_menu.
+ */
+function pesos_menu() {
+  $items['pesos/connect/%'] = array(
+    'page arguments' => array(2),
+    'page callback' => 'pesos_connect',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_block_info.
+ */
+function pesos_block_info() {
+  $blocks['connector'] = array(
+    'info' => t('Connector'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view.
+ */
+function pesos_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'connector':
+      $block['subject'] = t('Connector');
+
+      $items = array();
+      $silos = pesos_get_silos();
+      foreach ($silos as $silo) {
+        $credentials = pesos_service_credentials($silo['name']);
+        if (isset($credentials['key']) && isset($credentials['secret'])) {
+          $items[] = l(
+            t('Connect with !silo', array('!silo' => $silo['title'])),
+            'pesos/connect/' . $silo['name']
+          );
+        }
+      }
+
+      $block['content'] = array(
+        '#theme' => 'item_list',
+        '#items' => $items,
+      );
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_ctools_plugin_type.
+ */
+function pesos_ctools_plugin_type() {
+  $plugins['silo'] = array(
+    'cache' => TRUE,
+    'use hooks' => TRUE,
+    'process' => 'pesos_ctools_service_credentials',
+  );
+  return $plugins;
+}
+
+/**
+ * Implements hook_ctools_plugin_directory.
+ */
+function pesos_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'pesos' && $plugin_type == 'silo') {
+    return 'plugins/silos';
+  }
+}
+
+/**
+ * Get a Silo plugin.
+ *
+ * @param $silo string
+ *   A Silo name
+ *
+ * @return array
+ */
+function pesos_get_silo($silo) {
+  ctools_include('plugins');
+  return ctools_get_plugins('pesos', 'silo', $silo);
+}
+
+/**
+ * Get all Silo plugins.
+ *
+ * @return array
+ */
+function pesos_get_silos() {
+  ctools_include('plugins');
+  return ctools_get_plugins('pesos', 'silo');
+}
+
+/**
+ * Service credentials. A ctools plugin callback.
+ *
+ * @param $plugin
+ * @param $info
+ *
+ * @return array
+ */
+function pesos_ctools_service_credentials(&$plugin, $info) {
+  $plugin['defaults'] = pesos_service_credentials($plugin['name']) + array(
+    'key' => '',
+    'secret' => '',
+  );
+}
+
+/**
+ * Service credentials.
+ *
+ * @param $silo
+ *
+ * @return array
+ */
+function pesos_service_credentials($silo) {
+  $service_credentials = variable_get('pesos_service_credentials', array());
+  return isset($service_credentials[$silo]) ?
+    $service_credentials[$silo] :
+    array();
+}
+
+/**
+ * Connect a silo with a local user account.
+ *
+ * A menu callback.
+ *
+ * @param string $silo
+ *
+ * @return string
+ */
+function pesos_connect($silo) {
+  $silo = pesos_get_silo($silo);
+  if (!is_array($silo) || !isset($silo['class'])) {
+    drupal_not_found();
+  }
+
+  $class = $silo['class'];
+  $silo = new $class($silo['defaults']);
+  $silo->setURI(url(current_path(), array('absolute' => TRUE)));
+  $silo->connect();
+
+  return '<pre>' . print_r($silo, TRUE) . '</pre>';
+}

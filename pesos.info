@@ -1,0 +1,12 @@
+name = PESOS
+description = Publish Elsewhere, Syndicate (to your) Own Site
+core = 7.x
+
+package = IndieWeb
+
+files[] = silo.inc
+files[] = plugins/silos/facebook.inc
+files[] = plugins/silos/flickr.inc
+files[] = plugins/silos/github.inc
+files[] = plugins/silos/instagram.inc
+files[] = plugins/silos/twitter.inc
