@@ -5,6 +5,7 @@ core = 7.x
 package = IndieWeb
 
 files[] = silo.inc
+files[] = plugins/silos/amazon.inc
 files[] = plugins/silos/facebook.inc
 files[] = plugins/silos/flickr.inc
 files[] = plugins/silos/github.inc
