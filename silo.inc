@@ -5,8 +5,9 @@
  * Base class for silos.
  */
 
-use OAuth\Common\Storage\Session;
 use OAuth\Common\Consumer\Credentials;
+use OAuth\Common\Http\Client\CurlClient;
+use OAuth\Common\Storage\Session;
 
 /**
  * Class Silo
@@ -174,6 +175,8 @@ class Silo {
   public function authenticate() {
     /** @var $serviceFactory \OAuth\ServiceFactory An OAuth service factory. */
     $serviceFactory = new \OAuth\ServiceFactory();
+    $httpClient = new \OAuth\Common\Http\Client\CurlClient();
+    $serviceFactory->setHttpClient($httpClient);
 
     // Setup the credentials for the requests
     $this->credentials = new Credentials(
