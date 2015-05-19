@@ -52,7 +52,7 @@ class TwitterSilo extends Silo {
 
   public function getItems() {
     return json_decode(
-      $this->service->request('statuses/user_timeline.json?user_id=sanduhrs&count=100&include_rts=1')
+      $this->service->request('statuses/user_timeline.json?count=25')
     );
   }
 
