@@ -195,4 +195,13 @@ class Silo {
     );
   }
 
+  /**
+   * Get items from remote service.
+   *
+   * @return array
+   */
+  public function getItems() {
+    return array();
+  }
+
 }

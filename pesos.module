@@ -161,6 +161,7 @@ function pesos_connect($silo) {
   $silo = new $class($silo['defaults']);
   $silo->setURI(url(current_path(), array('absolute' => TRUE)));
   $silo->authenticate();
+  $items = $silo->getItems();
 
-  return '<pre>' . print_r($silo, TRUE) . '</pre>';
+  return '<pre>' . print_r($items, TRUE) . '</pre>';
 }
