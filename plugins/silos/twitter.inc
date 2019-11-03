@@ -20,8 +20,6 @@ class TwitterSilo extends Silo {
 
   protected $title = 'Twitter';
 
-  protected $scopes = array();
-
   public function authenticate() {
     parent::authenticate();
 
@@ -30,21 +28,23 @@ class TwitterSilo extends Silo {
     }
     catch(Exception $e) {
       if (!empty($_GET['oauth_token'])) {
-        $this->token = $this->storage->retrieveAccessToken($this->title);
+        $this->token = $this->storage->retrieveAccessToken('Twitter');
 
-        // This was a callback request from Twitter, get the token.
+        // This was a callback request from twitter, get the token
         $this->service->requestAccessToken(
           $_GET['oauth_token'],
           $_GET['oauth_verifier'],
           $this->token->getRequestTokenSecret()
         );
+
+        // Send a request now that we have access token
+        $result = json_decode($twitterService->request('account/verify_credentials.json'));
       }
       else {
-        // Extra request needed for oauth1 to request a request token
+        // extra request needed for oauth1 to request a request token :-)
         $this->token = $this->service->requestRequestToken();
-        $url = $this->service->getAuthorizationUri(
-          array('oauth_token' => $this->token->getRequestToken())
-        );
+
+        $url = $this->service->getAuthorizationUri(array('oauth_token' => $this->token->getRequestToken()));
         header('Location: ' . $url);
       }
     }
@@ -57,3 +57,4 @@ class TwitterSilo extends Silo {
   }
 
 }
+
